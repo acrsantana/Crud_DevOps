@@ -5,7 +5,6 @@ import br.edu.infnet.crud_devops.model.UsuarioDto;
 import br.edu.infnet.crud_devops.model.Usuario;
 import br.edu.infnet.crud_devops.repository.DevOpsRepository;
 import io.micrometer.observation.annotation.Observed;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ public class DevOpsService implements App {
 
     private static final Logger log = LoggerFactory.getLogger(DevOpsService.class);
     private final DevOpsRepository repository;
-    ModelMapper mapper = new ModelMapper();
     private final Random random = new Random();
 
     public DevOpsService(DevOpsRepository repository) {
@@ -33,8 +31,8 @@ public class DevOpsService implements App {
         log.info("Salvando usuario com cpf = <{}>", usuarioDto.getCpf());
         try {
             Thread.sleep(random.nextLong(200L)); // simulates latency
-            Usuario usuario = repository.save(mapper.map(usuarioDto, Usuario.class));
-            return mapper.map(usuario, UsuarioDto.class);
+            Usuario usuario = repository.save(usuarioDto.toUsuario());
+            return usuario.toDto();
         }
         catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -50,7 +48,7 @@ public class DevOpsService implements App {
         try {
             Thread.sleep(random.nextLong(200L)); // simulates latency
             Usuario usuario = repository.findById(cpf).orElseThrow();
-            return mapper.map(usuario, UsuarioDto.class);
+            return usuario.toDto();
         }
         catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -67,7 +65,7 @@ public class DevOpsService implements App {
         try {
             Thread.sleep(random.nextLong(200L)); // simulates latency
             List<Usuario> usuarios = repository.findAll();
-            return usuarios.stream().map(usuario -> mapper.map(usuario, UsuarioDto.class)).toList();
+            return usuarios.stream().map(Usuario::toDto).toList();
         }
         catch (InterruptedException e) {
             throw new RuntimeException(e);
