@@ -1,4 +1,4 @@
-package br.edu.infnet.crud_devops.repository;
+package br.edu.infnet.crud_devops.services;
 
 import br.edu.infnet.crud_devops.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

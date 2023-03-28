@@ -1,9 +1,8 @@
 package br.edu.infnet.crud_devops.services;
 
 import br.edu.infnet.crud_devops.controller.App;
-import br.edu.infnet.crud_devops.model.UsuarioDto;
 import br.edu.infnet.crud_devops.model.Usuario;
-import br.edu.infnet.crud_devops.repository.DevOpsRepository;
+import br.edu.infnet.crud_devops.model.UsuarioDto;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,11 +29,12 @@ public class DevOpsService implements App {
     public UsuarioDto save(UsuarioDto usuarioDto) {
         log.info("Salvando usuario com cpf = <{}>", usuarioDto.getCpf());
         try {
-//            Thread.sleep(random.nextLong(200L)); // simulates latency
+            Thread.sleep(random.nextLong(200L)); // simulates latency
             Usuario usuario = repository.save(usuarioDto.toUsuario());
             return usuario.toDto();
         }
-        catch (Exception e) {
+        catch (InterruptedException e) {
+            log.error("Execução interrompida, tente novamente.");
             throw new RuntimeException(e);
         }
     }
@@ -46,11 +46,12 @@ public class DevOpsService implements App {
     public UsuarioDto find(String cpf) {
         log.info("Buscando usuario com cpf = <{}>", cpf);
         try {
-//            Thread.sleep(random.nextLong(200L)); // simulates latency
+            Thread.sleep(random.nextLong(200L)); // simulates latency
             Usuario usuario = repository.findById(cpf).orElseThrow();
             return usuario.toDto();
         }
-        catch (Exception e) {
+        catch (InterruptedException e) {
+            log.error("Execução interrompida, tente novamente.");
             throw new RuntimeException(e);
         }
     }
@@ -63,11 +64,12 @@ public class DevOpsService implements App {
 
         log.info("Buscando todos os usuarios");
         try {
-//            Thread.sleep(random.nextLong(200L)); // simulates latency
+            Thread.sleep(random.nextLong(200L)); // simulates latency
             List<Usuario> usuarios = repository.findAll();
             return usuarios.stream().map(Usuario::toDto).toList();
         }
-        catch (Exception e) {
+        catch (InterruptedException e) {
+            log.error("Execução interrompida, tente novamente.");
             throw new RuntimeException(e);
         }
     }
@@ -80,10 +82,11 @@ public class DevOpsService implements App {
 
         log.info("Apagando usuario com o cpf = <{}>", cpf);
         try {
-//            Thread.sleep(random.nextLong(200L)); // simulates latency
+            Thread.sleep(random.nextLong(200L)); // simulates latency
             repository.deleteById(cpf);
         }
-        catch (Exception e) {
+        catch (InterruptedException e) {
+            log.error("Execução interrompida, tente novamente.");
             throw new RuntimeException(e);
         }
     }
