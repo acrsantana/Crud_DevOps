@@ -1,4 +1,4 @@
-# Crud_DevOps
+# Crud_DevOps ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/acrsantana/Crud_DevOps/maven.yml?style=plastic)
 Projeto da disciplina Integração Contínua e DevOps [23E1_3] da Pós Graduação de Engenharia de Software com Java do Instituto Infnet
 --
 Crie um projeto com Spring Boot expondo algumas APIS. O projeto pode ser o mais simples possível, um CRUD, um conversor de medidas etc. É importante construir o projeto através das seguintes regras:<BR>
