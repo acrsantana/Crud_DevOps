@@ -1,4 +1,5 @@
-# Crud_DevOps ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/acrsantana/Crud_DevOps/maven.yml?style=plastic)
+# Crud_DevOps<BR>
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/acrsantana/Crud_DevOps/maven.yml?style=plastic)<BR><BR>
 Projeto da disciplina Integração Contínua e DevOps [23E1_3] da Pós Graduação de Engenharia de Software com Java do Instituto Infnet
 --
 Crie um projeto com Spring Boot expondo algumas APIS. O projeto pode ser o mais simples possível, um CRUD, um conversor de medidas etc. É importante construir o projeto através das seguintes regras:<BR>
@@ -18,3 +19,11 @@ O projeto precisa ser entregue da seguinte forma:<BR>
 - Deve ser entregue o link para o projeto.
 - Na raiz do projeto deve ter arquivos de imagem com printscreens do zipkin rodando.
 - Todos devem postar o link para o projeto no Moodle.
+
+
+Instruções para executar o projeto
+--
+Baixar o arquivo [docker-compose.yml](https://github.com/acrsantana/Crud_DevOps/blob/master/docker-compose.yml) (necessário ter o docker)<BR>
+No mesmo diretorio onde o arquivo foi baixado, executar o comando docker-compose up<BR>
+URL da API: http://localhost:8080/usuarios<BR>
+URL do Zipkin: http://localhost:9411
