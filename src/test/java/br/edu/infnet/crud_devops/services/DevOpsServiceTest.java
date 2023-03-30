@@ -29,26 +29,26 @@ class DevOpsServiceTest {
 
     @Test
     void save() {
-        UsuarioDto daBahia = new UsuarioDto("727228275-49", "Cezão da Bahia", Sexo.MASCULINO);
-        Mockito.when(repository.save(daBahia.toUsuario())).thenReturn(daBahia.toUsuario());
+        UsuarioDto usuarioNovo = new UsuarioDto("123456789-10", "Usuario Novo", Sexo.MASCULINO);
+        Mockito.when(repository.save(usuarioNovo.toUsuario())).thenReturn(usuarioNovo.toUsuario());
 
-        UsuarioDto daBahiaGravado = devOpsService.save(daBahia);
+        UsuarioDto usuarioNovoGravado = devOpsService.save(usuarioNovo);
 
-        assertEquals(daBahia.getCpf(), daBahiaGravado.getCpf());
-        assertEquals(daBahia.getNome(), daBahiaGravado.getNome());
-        assertEquals(daBahia.getSexo(), daBahiaGravado.getSexo());
+        assertEquals(usuarioNovo.getCpf(), usuarioNovoGravado.getCpf());
+        assertEquals(usuarioNovo.getNome(), usuarioNovoGravado.getNome());
+        assertEquals(usuarioNovo.getSexo(), usuarioNovoGravado.getSexo());
     }
 
     @Test
     void find() {
-        UsuarioDto daBahia = new UsuarioDto("727228275-49", "Cezão da Bahia", Sexo.MASCULINO);
-        Mockito.when(repository.findById("727228275-49")).thenReturn(Optional.ofNullable(daBahia.toUsuario()));
+        UsuarioDto usuarioOriginal = new UsuarioDto("333333333-33", "Usuario Pesquisado", Sexo.FEMININO);
+        Mockito.when(repository.findById("333333333-33")).thenReturn(Optional.ofNullable(usuarioOriginal.toUsuario()));
 
-        UsuarioDto usuarioDto = devOpsService.find("727228275-49");
+        UsuarioDto usuarioRetornado = devOpsService.find("333333333-33");
 
-        assertEquals(daBahia.getCpf(), usuarioDto.getCpf());
-        assertEquals(daBahia.getNome(), usuarioDto.getNome());
-        assertEquals(daBahia.getSexo(), usuarioDto.getSexo());
+        assertEquals(usuarioOriginal.getCpf(), usuarioRetornado.getCpf());
+        assertEquals(usuarioOriginal.getNome(), usuarioRetornado.getNome());
+        assertEquals(usuarioOriginal.getSexo(), usuarioRetornado.getSexo());
     }
 
     @Test
@@ -71,7 +71,7 @@ class DevOpsServiceTest {
 
     @Test
     void delete() {
-        devOpsService.delete("727228275-49");
-        Mockito.verify(repository).deleteById("727228275-49");
+        devOpsService.delete("111111111-11");
+        Mockito.verify(repository).deleteById("111111111-11");
     }
 }

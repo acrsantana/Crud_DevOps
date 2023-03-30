@@ -24,6 +24,7 @@ O projeto precisa ser entregue da seguinte forma:<BR>
 Instruções para executar o projeto
 --
 Baixar o arquivo [docker-compose.yml](https://github.com/acrsantana/Crud_DevOps/blob/master/docker-compose.yml) (necessário ter o docker)<BR>
-No mesmo diretorio onde o arquivo foi baixado, executar o comando docker-compose up<BR>
-URL da API: http://localhost:8080/usuarios<BR>
-URL do Zipkin: http://localhost:9411
+No mesmo diretorio onde o arquivo foi baixado, executar o comando: docker-compose up <BR>
+URL da API: http://localhost:8080/usuarios <BR>
+URL do Zipkin: http://localhost:9411 <BR>
+Documentação da API: http://localhost:8080/swagger-ui/index.html
