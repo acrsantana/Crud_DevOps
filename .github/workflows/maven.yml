@@ -29,13 +29,3 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package
-      
-  docker:
-  
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: docker/build-push-action@v4.0.0
-    - name: build and push image to dockerhub
-      with:
-        file: 'https://github.com/acrsantana/Crud_DevOps/blob/master/Dockerfile'
