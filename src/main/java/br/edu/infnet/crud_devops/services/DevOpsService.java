@@ -27,7 +27,7 @@ public class DevOpsService implements App {
             lowCardinalityKeyValues = {"user", "user2"})
     @Override
     public UsuarioDto save(UsuarioDto usuarioDto) {
-        log.info("Salvando usuario com cpf = <{}>", usuarioDto.getCpf());
+        log.info("Salvando 0 usuario {}", usuarioDto.getNome());
         try {
             Thread.sleep(random.nextLong(200L)); // simulates latency
             Usuario usuario = repository.save(usuarioDto.toUsuario());
@@ -44,7 +44,7 @@ public class DevOpsService implements App {
             lowCardinalityKeyValues = {"user", "user2"})
     @Override
     public UsuarioDto find(String cpf) {
-        log.info("Buscando usuario com cpf = <{}>", cpf);
+        log.info("Buscando usuario com cpf = {}", cpf);
         try {
             Thread.sleep(random.nextLong(200L)); // simulates latency
             Usuario usuario = repository.findById(cpf).orElseThrow();

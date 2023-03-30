@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  devops_app:
+    image: "cezaodabahia/devops_app"
+    depends_on:
+      - zipkin
+    ports:
+      - "8080:8080"
+    networks:
+      - devops
+  zipkin:
+    image: "openzipkin/zipkin"
+    ports:
+      - "9411:9411"
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
