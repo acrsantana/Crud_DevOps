@@ -29,9 +29,9 @@ URL da API: http://localhost:8080/usuarios <BR>
 URL do Zipkin: http://localhost:9411 <BR>
 Documentação da API: http://localhost:8080/swagger-ui/index.html <BR>
 <BR>
-URL da API na AWS: http://ec2-44-200-93-82.compute-1.amazonaws.com:8080/usuarios <BR>
-URL do Zipkin AWS: http://ec2-44-200-93-82.compute-1.amazonaws.com:9411 <BR>
-Documentação da API na AWS: http://ec2-44-200-93-82.compute-1.amazonaws.com:8080/swagger-ui/index.html <BR>
+URL da API na AWS: http://acrsantana-crud-devops-master-943251720.us-east-1.elb.amazonaws.com:8080/usuarios <BR>
+URL do Zipkin AWS: http://acrsantana-crud-devops-master-943251720.us-east-1.elb.amazonaws.com:9411 <BR>
+Documentação da API na AWS: http://acrsantana-crud-devops-master-943251720.us-east-1.elb.amazonaws.com:8080/swagger-ui/index.html <BR>
 
 Instruções para executar o script terraform
 --
