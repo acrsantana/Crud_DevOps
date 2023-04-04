@@ -28,3 +28,9 @@ No mesmo diretorio onde o arquivo foi baixado, executar o comando: docker-compos
 URL da API: http://localhost:8080/usuarios <BR>
 URL do Zipkin: http://localhost:9411 <BR>
 Documentação da API: http://localhost:8080/swagger-ui/index.html
+
+Instruções para executar o script terraform
+--
+Configurar a variável de ambiente AWS_ACCESS_KEY_ID com o seu Access Key Id da AWS<BR>
+Configurar a variável de ambiente AWS_SECRET_ACCESS_KEY com o seu Access Key Secret da AWS<BR>
+Entrar na pasta Terraform e executar o script de acordo com as instruções da Hashicorp<BR>
