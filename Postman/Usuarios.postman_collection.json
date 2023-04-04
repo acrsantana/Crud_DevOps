@@ -12,11 +12,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:7654/usuarios",
+					"raw": "localhost:8080/usuarios",
 					"host": [
 						"localhost"
 					],
-					"port": "7654",
+					"port": "8080",
 					"path": [
 						"usuarios"
 					]
@@ -30,11 +30,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:7654/usuarios/111111111-11",
+					"raw": "localhost:8080/usuarios/111111111-11",
 					"host": [
 						"localhost"
 					],
-					"port": "7654",
+					"port": "8080",
 					"path": [
 						"usuarios",
 						"111111111-11"
@@ -59,11 +59,11 @@
 					"raw": "{\r\n    \"cpf\": \"123456789-10\",\r\n    \"nome\": \"Novo Usuario\",\r\n    \"sexo\": \"MASCULINO\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:7654/usuarios",
+					"raw": "localhost:8080/usuarios",
 					"host": [
 						"localhost"
 					],
-					"port": "7654",
+					"port": "8080",
 					"path": [
 						"usuarios"
 					]
@@ -84,14 +84,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cpf\": \"727228275-49\",\r\n    \"nome\": \"Cezão da Bahia\",\r\n    \"sexo\": \"MASCULINO\"\r\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:7654/usuarios/222222222-22",
+					"raw": "localhost:8080/usuarios/222222222-22",
 					"host": [
 						"localhost"
 					],
-					"port": "7654",
+					"port": "8080",
 					"path": [
 						"usuarios",
 						"222222222-22"
