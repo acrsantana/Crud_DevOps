@@ -27,7 +27,10 @@ Baixar o arquivo [docker-compose.yml](https://github.com/acrsantana/Crud_DevOps/
 No mesmo diretorio onde o arquivo foi baixado, executar o comando: docker-compose up <BR>
 URL da API: http://localhost:8080/usuarios <BR>
 URL do Zipkin: http://localhost:9411 <BR>
-Documentação da API: http://localhost:8080/swagger-ui/index.html
+Documentação da API: http://localhost:8080/swagger-ui/index.html <BR>
+<BR>
+Zipkin AWS: http://ec2-44-200-93-82.compute-1.amazonaws.com:9411 <BR>
+URL da API na AWS: http://ec2-44-200-93-82.compute-1.amazonaws.com:8080/usuarios <BR>
 
 Instruções para executar o script terraform
 --
