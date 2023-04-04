@@ -28,7 +28,7 @@ No mesmo diretorio onde o arquivo foi baixado, executar o comando: docker-compos
 URL da API: http://localhost:8080/usuarios <BR>
 URL do Zipkin: http://localhost:9411 <BR>
 Documentação da API: http://localhost:8080/swagger-ui/index.html <BR>
-<BR>
+ <BR>
 
 Instruções para executar o script terraform
 --
