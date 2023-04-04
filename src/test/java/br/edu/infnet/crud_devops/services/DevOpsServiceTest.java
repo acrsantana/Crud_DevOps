@@ -24,7 +24,7 @@ class DevOpsServiceTest {
     @BeforeEach
     public void beforeEach() {
         MockitoAnnotations.initMocks(this);
-        this.devOpsService = new DevOpsService(repository);
+        this.devOpsService = new DevOpsService(repository, null, null);
     }
 
     @Test

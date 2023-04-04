@@ -1,14 +1,19 @@
 package br.edu.infnet.crud_devops.services;
 
 import br.edu.infnet.crud_devops.controller.App;
+import br.edu.infnet.crud_devops.model.Sexo;
 import br.edu.infnet.crud_devops.model.Usuario;
 import br.edu.infnet.crud_devops.model.UsuarioDto;
-import io.micrometer.observation.annotation.Observed;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -16,78 +21,62 @@ public class DevOpsService implements App {
 
     private static final Logger log = LoggerFactory.getLogger(DevOpsService.class);
     private final DevOpsRepository repository;
+    private final ObservationRegistry registry;
+    private final RestTemplate restTemplate;
     private final Random random = new Random();
 
-    public DevOpsService(DevOpsRepository repository) {
+    public DevOpsService(DevOpsRepository repository, ObservationRegistry registry, RestTemplate restTemplate) {
         this.repository = repository;
+        this.registry = registry;
+        this.restTemplate = restTemplate;
     }
 
-    @Observed(name = "user.save",
-            contextualName = "saving-user",
-            lowCardinalityKeyValues = {"user", "user2"})
+    @Override
+    public String hello(String cpf) {
+        log.info("Hello usuario");
+        Optional<Usuario> byId = repository.findById(cpf);
+        if (byId.isEmpty()){
+            throw new RuntimeException();
+        }
+        UsuarioDto dto = byId.get().toDto();
+        Observation observation = Observation.createNotStarted("hello.devops.request", registry)
+                .lowCardinalityKeyValue("userType", dto.getSexo().name())
+                .highCardinalityKeyValue("userId", cpf)
+                .contextualName("span-hello-user")
+                .start();
+        log.info("Realizando requisição para HelloDevOps");
+        String response = restTemplate.getForObject("http://hellodevops:8081/hello", String.class, cpf);
+        log.info("{}, {}", response, dto.getNome());
+        observation.stop();
+        return response;
+    }
+
     @Override
     public UsuarioDto save(UsuarioDto usuarioDto) {
         log.info("Salvando 0 usuario {}", usuarioDto.getNome());
-        try {
-            Thread.sleep(random.nextLong(200L)); // simulates latency
-            Usuario usuario = repository.save(usuarioDto.toUsuario());
-            return usuario.toDto();
-        }
-        catch (InterruptedException e) {
-            log.error("Execução interrompida, tente novamente.");
-            throw new RuntimeException(e);
-        }
+        Usuario usuario = repository.save(usuarioDto.toUsuario());
+        return usuario.toDto();
     }
 
-    @Observed(name = "user.find",
-            contextualName = "finding-user",
-            lowCardinalityKeyValues = {"user", "user2"})
     @Override
     public UsuarioDto find(String cpf) {
         log.info("Buscando usuario com cpf = {}", cpf);
-        try {
-            Thread.sleep(random.nextLong(200L)); // simulates latency
-            Usuario usuario = repository.findById(cpf).orElseThrow();
-            return usuario.toDto();
-        }
-        catch (InterruptedException e) {
-            log.error("Execução interrompida, tente novamente.");
-            throw new RuntimeException(e);
-        }
+        Usuario usuario = repository.findById(cpf).orElseThrow();
+        return usuario.toDto();
     }
 
-    @Observed(name = "user.findAll",
-            contextualName = "finding-all-users",
-            lowCardinalityKeyValues = {"user", "user2"})
     @Override
     public List<UsuarioDto> findAll() {
 
         log.info("Buscando todos os usuarios");
-        try {
-            Thread.sleep(random.nextLong(200L)); // simulates latency
-            List<Usuario> usuarios = repository.findAll();
-            return usuarios.stream().map(Usuario::toDto).toList();
-        }
-        catch (InterruptedException e) {
-            log.error("Execução interrompida, tente novamente.");
-            throw new RuntimeException(e);
-        }
+        List<Usuario> usuarios = repository.findAll();
+        return usuarios.stream().map(Usuario::toDto).toList();
     }
 
-    @Observed(name = "user.delete",
-            contextualName = "deleting-user",
-            lowCardinalityKeyValues = {"user", "user2"})
     @Override
     public void delete(String cpf) {
 
         log.info("Apagando usuario com o cpf = <{}>", cpf);
-        try {
-            Thread.sleep(random.nextLong(200L)); // simulates latency
-            repository.deleteById(cpf);
-        }
-        catch (InterruptedException e) {
-            log.error("Execução interrompida, tente novamente.");
-            throw new RuntimeException(e);
-        }
+        repository.deleteById(cpf);
     }
 }

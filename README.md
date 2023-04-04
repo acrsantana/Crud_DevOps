@@ -27,6 +27,8 @@ Baixar o arquivo [docker-compose.yml](https://github.com/acrsantana/Crud_DevOps/
 No mesmo diretorio onde o arquivo foi baixado, executar o comando: docker-compose up <BR>
 URL da API: http://localhost:8080/usuarios <BR>
 URL do Zipkin: http://localhost:9411 <BR>
+URL do Prometheus: http://localhost:9090 <BR>
+URL do Grafana: http://localhost:3000 <BR>
 Documentação da API: http://localhost:8080/swagger-ui/index.html <BR>
 <BR>
 

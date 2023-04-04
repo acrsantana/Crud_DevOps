@@ -43,4 +43,10 @@ public class DevOpsController {
         log.info("deleteById got a request");
         devOpsService.delete(cpf);
     }
+
+    @GetMapping("/hello/{cpf}")
+    public String hello(@PathVariable("cpf") String cpf){
+        log.info("hello got a request");
+        return devOpsService.hello(cpf);
+    }
 }
