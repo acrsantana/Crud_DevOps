@@ -32,7 +32,7 @@ services:
   tempo:
     image: grafana/tempo
     extra_hosts: [ 'host.docker.internal:host-gateway' ]
-    command: [ "-config.file=/etc/tempo.yaml" ]
+    command: [ "-config.file=/etc/tempo.yaml/tempo-local.yaml" ]
     volumes:
       - ./docker/tempo/tempo-local.yaml:/etc/tempo.yaml:ro
       - ./tempo-data:/tmp/tempo
