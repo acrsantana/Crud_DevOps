@@ -21,6 +21,7 @@ public class DevOpsService implements App {
 
     private static final Logger log = LoggerFactory.getLogger(DevOpsService.class);
     private final DevOpsRepository repository;
+    private final String URL = "http://hellodevops:8081/hello";
     private final ObservationRegistry registry;
     private final RestTemplate restTemplate;
     private final Random random = new Random();
@@ -45,8 +46,13 @@ public class DevOpsService implements App {
                 .contextualName("span-hello-user")
                 .start();
         log.info("Realizando requisição para HelloDevOps");
-        String response = restTemplate.getForObject("http://hellodevops:8081/hello", String.class, cpf);
+
+//        String response = restTemplate.getForObject("http://hellodevops:8081/hello", String.class, cpf);
+        String response = restTemplate.postForObject(URL, dto, String.class);
+
         log.info("{}, {}", response, dto.getNome());
+
+
         observation.stop();
         return response;
     }
