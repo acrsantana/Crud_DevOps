@@ -1,11 +1,14 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+tempo-data/**
+
+### Terraform ###
 Terraform/.terraform.lock.hcl
 Terraform/terraform.tfstate
 Terraform/terraform.tfstate.backup
+Terraform/.terraform/providers/**
 
 ### STS ###
 .apt_generated
@@ -15,6 +18,9 @@ Terraform/terraform.tfstate.backup
 .settings
 .springBeans
 .sts4-cache
+
+### Maven ###
+.mvn/**
 
 ### IntelliJ IDEA ###
 .idea
